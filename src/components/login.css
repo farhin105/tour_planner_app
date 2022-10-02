@@ -1,0 +1,55 @@
+  .login-form {
+    background-color: #354152;
+    padding: 2rem;
+    box-shadow: 14px 14px 14px 14px rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+  
+  .title {
+    text-align: center;
+    font-size: 25px;
+    margin-bottom: 20px;
+  }
+
+  .input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 10px;
+  }
+  
+  input {
+    outline: 0;
+    height: 20px;
+    padding: 10px 20px; 
+    border-radius: 999px;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    border: 1px solid #2a3641;
+    background-color: transparent;
+    color: #7e8ba3;
+  }
+
+  input::placeholder {
+    color: #7e8ba3;
+  }
+
+  input[type="submit"] {
+    margin-top: 10px;
+    height: 40px;
+    cursor: pointer;
+    background: #29ca72;
+    border: 1px solid #29ca72;
+    color: #fff;
+  }
+  
+  input[type="submit"]:hover {
+    background: #70e2ad;
+  }
+  
+  .error {
+    color: #db5050;
+    font-size: 14px;
+    text-align: center;
+  }
