@@ -36,6 +36,12 @@ const rows = [
 ];
 
 
+function Cell(props) {
+  const {data, component, scope} = props;
+  return(
+      <TableCell component={component} scope={scope} sx={{ color: "#2e3b48" }}>{data}</TableCell>
+  )
+}
 function Row({ row }) {
   const [open, setOpen] = React.useState(false);
   return (
@@ -50,11 +56,11 @@ function Row({ row }) {
             {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
           </IconButton>
         </TableCell>
-        <TableCell sx={{ color: "#dee0eb" }} component="th" scope="row">{row.name}</TableCell>
-        <TableCell sx={{ color: "#dee0eb" }}>{row.length}</TableCell>
-        <TableCell sx={{ color: "#dee0eb" }}>{row.width}</TableCell>
-        <TableCell sx={{ color: "#dee0eb" }}>{row.height}</TableCell>
-        <TableCell sx={{ color: "#dee0eb" }}>{row.cost}</TableCell>
+        <Cell component="th" scope="row" data={row.name}/>
+        <Cell data={row.length}/>
+        <Cell data={row.width}/>
+        <Cell data={row.height}/>
+        <Cell data={row.cost}/>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>

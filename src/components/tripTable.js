@@ -38,6 +38,12 @@ const rows = [
     createData("Trip 2", "100", "26 September 2022", "Failed")
 ];
 
+function Cell(props) {
+    const {data, component, scope} = props;
+    return(
+        <TableCell component={component} scope={scope} sx={{ color: "#2e3b48" }}>{data}</TableCell>
+    )
+}
 
 function Row({ row }) {
     const [open, setOpen] = React.useState(false);
@@ -53,10 +59,10 @@ function Row({ row }) {
                         {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                     </IconButton>
                 </TableCell>
-                <TableCell sx={{ color: "#dee0eb" }} component="th" scope="row">{row.name}</TableCell>
-                <TableCell sx={{ color: "#dee0eb" }}>{row.deliveriCount}</TableCell>
-                <TableCell sx={{ color: "#dee0eb" }}>{row.date}</TableCell>
-                <TableCell sx={{ color: "#dee0eb" }}>{row.status}</TableCell>
+                <Cell data={row.name}/>
+                <Cell data={row.deliveriCount}/>
+                <Cell data={row.date}/>
+                <Cell data={row.status}/>
             </TableRow>
             <TableRow>
                 <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
