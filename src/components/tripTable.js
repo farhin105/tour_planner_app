@@ -4,13 +4,30 @@ import {
     TableBody,
     TableCell,
     TableHead,
-    TableRow
+    TableRow,
+    Collapse,
+    IconButton
 } from "@mui/material";
+import RecordDetails from "./recordDetails";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+
+
+function details() {
+    return {
+        start: "Bonn",
+        end: "Cologne",
+        time: "3 Hours",
+        totalDelivered: 20,
+        weight: "200 Kgs"
+    };
+}
 
 function createData(
     name, deliveriCount, date, status
 ) {
-    return { name, deliveriCount, date, status };
+    const detail = details();
+    return { name, deliveriCount, date, status, detail };
 }
 
 const columns = [
@@ -21,6 +38,37 @@ const rows = [
     createData("Trip 2", "100", "26 September 2022", "Failed")
 ];
 
+
+function Row({ row }) {
+    const [open, setOpen] = React.useState(false);
+    return (
+        <>
+            <TableRow>
+                <TableCell>
+                    <IconButton
+                        aria-label="expand row"
+                        size="small"
+                        onClick={() => setOpen(!open)}
+                    >
+                        {open ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                    </IconButton>
+                </TableCell>
+                <TableCell sx={{ color: "#dee0eb" }} component="th" scope="row">{row.name}</TableCell>
+                <TableCell sx={{ color: "#dee0eb" }}>{row.deliveriCount}</TableCell>
+                <TableCell sx={{ color: "#dee0eb" }}>{row.date}</TableCell>
+                <TableCell sx={{ color: "#dee0eb" }}>{row.status}</TableCell>
+            </TableRow>
+            <TableRow>
+                <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                        <RecordDetails row={row} componentName='trip' />
+                    </Collapse>
+                </TableCell>
+            </TableRow>
+        </>
+    );
+}
+
 export default function TripTable() {
     return (
         <>
@@ -28,6 +76,7 @@ export default function TripTable() {
             <Table aria-label="simple table">
                 <TableHead>
                     <TableRow>
+                        <TableCell />
                         {columns.map((column) => (
                             <TableCell sx={{ color: "white" }} key={column}>{column}</TableCell>
                         ))}
@@ -35,12 +84,7 @@ export default function TripTable() {
                 </TableHead>
                 <TableBody>
                     {rows.map((row) => (
-                        <TableRow key={row.name} >
-                            <TableCell sx={{ color: "#dee0eb" }} component="th" scope="row">{row.name}</TableCell>
-                            <TableCell sx={{ color: "#dee0eb" }}>{row.deliveriCount}</TableCell>
-                            <TableCell sx={{ color: "#dee0eb" }}>{row.date}</TableCell>
-                            <TableCell sx={{ color: "#dee0eb" }}>{row.status}</TableCell>
-                        </TableRow>
+                        <Row key={row.name} row={row} />
                     ))}
                 </TableBody>
             </Table>
