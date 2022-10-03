@@ -1,0 +1,8 @@
+
+.tab-container {
+    width: 100%;
+    min-height: 500px;
+    box-shadow: 14px 14px 14px 14px rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+    background-color: #8b9299;
+    color: white;
+}
