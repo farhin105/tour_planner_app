@@ -1,4 +1,5 @@
 ## _Tour Planner_
+
 ## Implementation
 Used React.js to implement this application. Also, I have used some libraries from materialUI(https://mui.com/) for some components and styling. 
 
