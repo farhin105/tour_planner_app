@@ -2,12 +2,11 @@ import React, { useState } from "react";
 
 import "./login.css";
 
-function Login() {
+function Login({ setToken }) {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState();
 
     const [errorMessage, setErrorMessage] = useState('');
-    const [loggedIn, setLoggedIn] = useState(false);
 
     // correct crredntials for login
     const correctCredentials = {
@@ -28,14 +27,12 @@ function Login() {
         // if username is correct then check password
         if (userExists) {
             if (correctCredentials.password === password) {
-                setLoggedIn(true);
+                setToken(username);
             } else {
-                // incorrect password
                 setErrorMessage("Password is not correct");
             }
         }
         else {
-            // incorrect username
             setErrorMessage("Username is not correct");
         }
     };
@@ -63,7 +60,7 @@ function Login() {
         <>
             <div className="login-form">
                 <div className="title">Login</div>
-                {loggedIn ? <div>logged in</div> : loginForm}
+                {loginForm}
             </div>
         </>
     );
